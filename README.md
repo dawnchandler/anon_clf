@@ -13,11 +13,12 @@ The data comes from [the SOCC dataset](https://github.com/sfu-discourse-lab/SOCC
 The data files are not currently available in this repo. As a todo item for myself, I intend to modify the existing scripts (and create a username extraction script) to automate the pipeline for anyone who clones this repo. Once that is done, the data will be available here.
 
 ##### Features
-From each username string, I extracted the following features using [extract_features.py](https://github.com/dawnchandler/anon_clf/blob/master/extract_features.py).
+From each username string, I extracted the following features with the script [extract_features.py](https://github.com/dawnchandler/anon_clf/blob/master/extract_features.py).
 ```comment_author,num_chars,has_digits,num_tokens,has_first_name,has_last_name,num_words```
+To construct some of these features, I used [the SOWPODS Scrabble word list](https://www.wordgamedictionary.com/sowpods/) and [the Names Database](https://github.com/smashew/NameDatabases).
 
 ##### Model
-Using the unlabelled data file of usernames with features and the file of their labels, I trained the an SVM classifier.
+With the unlabelled data file of usernames with features and the file of their labels, I trained an SVM classifier using scikit-learn and an 80/20 train/test split.
 
 ### Results
 In general, this classifier works okay. It shows promise, but it could use a lot of improvements.
