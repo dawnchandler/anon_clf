@@ -1,29 +1,15 @@
 '''
-# comment_author,num_chars,has_digits,num_tokens,has_first_name,has_last_name,num_words
-            
-            # Add column for num_chars (length of username):
-            # Add column for has_digits (presence of digits in username):
-            # Add column for num_tokens (number of tokens in segmentation):
-            # Add column for has_first_name (a token in the segmentation is in first names list):
-            # Add column for has_last_name (a token in the segmentation is in last names list):
-            # Add column for num_words (number of tokens in the segmentation that are in the Scrabble word list):
+Headings: 
+comment_author,num_chars,has_digits,num_tokens,has_first_name,has_last_name,num_words
 '''
 import pandas as pd
 import numpy as np
 import re
 
-
-
-
-
 # Returns a ['Camel', 'Case', 'XYZ'] split of a string.
 def camel_case_split(identifier):
     matches = re.finditer('.+?(?:(?<=[a-z])(?=[A-Z])|(?<=[A-Z])(?=[A-Z][a-z])|$)', identifier)
     return [m.group(0) for m in matches]
-
-
-
-
 
 # Make dictionaries of first and last names.
 with open('./data/names/first_names.txt', 'r', encoding='utf-8') as f:
@@ -44,10 +30,6 @@ with open('./data/words/scrabble_words.txt', 'r', encoding='utf-8') as f:
         word = word[:-1] # Exclude newline character.
         scrabble_words[word] = 1
 
-
-
-
-
 # Create output file:
 path_to_output = './data/output.csv'
 with open(path_to_output, 'a', encoding='utf-8') as o: # a is to append to file.
@@ -58,9 +40,6 @@ with open(path_to_output, 'a', encoding='utf-8') as o: # a is to append to file.
         headers = h.readline()
         o.write(headers)
         
-        
-        
-
 # TODO: Create config for file paths.
 #path_to_data = './data/comments_1.5k.data'
 path_to_data = './data/comments_sample.data'
